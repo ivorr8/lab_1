@@ -17,12 +17,7 @@ public class Route(IReadOnlyList<IRouteSegment> segments, double maxSped)
             time += segres.Time;
         }
 
-        if (_maxSped > train.GetSpeed())
-        {
-            return new RouteResult(false, 0);
-        }
-
-        return new RouteResult(true, time);
+        return _maxSped < train.Speed ? new RouteResult(false, 0) : new RouteResult(true, time);
     }
     
 }

@@ -1,9 +1,9 @@
 namespace lab_1;
 
-public abstract class Train(double mass, double force, double quality)
+public class Train(double mass, double force, double quality)
 {
-    private double _maxForce = force;
-    private double _speed = 0;
+    private readonly double  _maxForce = force;
+    public double Speed { get; private set; }= 0;
     private double _acceleration = 0;
 
     public ApplyForceResult ApplyForce(double force)
@@ -14,7 +14,6 @@ public abstract class Train(double mass, double force, double quality)
         }
         else
         {
-            _maxForce = force;
             _acceleration = force / mass;
             return new ApplyForceResult(true);
         }
@@ -22,13 +21,13 @@ public abstract class Train(double mass, double force, double quality)
 
     public SegmentResult CalculateTravelTime(double distance)
     {
-        if (_speed == 0 && _acceleration == 0)
+        if (Speed == 0 && _acceleration == 0)
         {
             return new SegmentResult(false, 0);
         }
         var lastDistance = distance;
         double lastTime = 0;
-        var lastSpeed = _speed;
+        var lastSpeed = Speed;
         while (lastDistance > 0)
         {
             var newSpeed = lastSpeed + _acceleration * quality;
@@ -42,23 +41,18 @@ public abstract class Train(double mass, double force, double quality)
             lastSpeed = newSpeed;
         }
 
-        _speed = lastSpeed;
+        Speed = lastSpeed;
         return new SegmentResult(true, lastTime);
     }
     
     public void Stop()
     {
-        _speed = 0;
+        Speed = 0;
         _acceleration = 0;
     }
     
     public void SetSpeed(double speed)
     {
-        _speed = speed;
+        Speed = speed;
     }
-    
-    public double GetSpeed(){
-        return _speed;}
-    
-    
 } 
