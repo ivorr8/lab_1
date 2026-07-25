@@ -6,12 +6,12 @@ public class Station(double time, double maxSped) : IRouteSegment
 
     public SegmentResult Pass(Train train)
     {
-        if (_maxSped < train.Speed)
+        if (_maxSped < train.GetSpeed())
         {
             return new SegmentResult(false, 0);
         }
 
-        double localSpeed = train.Speed;
+        double localSpeed = train.GetSpeed();
         train.Stop();
         train.SetSpeed(localSpeed);
         return new SegmentResult(true, time);

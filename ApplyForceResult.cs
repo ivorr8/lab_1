@@ -7,8 +7,8 @@ public class ApplyForceResult(bool result)
 
 public class SegmentResult(bool result, double time)
 {
-    public bool _result = result;
-    public double _time = time;
+    public readonly bool Result = result;
+    public readonly double Time = time;
 }
 
 public class RouteResult(bool result, double time)

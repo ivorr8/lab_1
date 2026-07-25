@@ -1,39 +1,40 @@
 namespace lab_1;
 
-public abstract class Train(int mass, int force, int quality)
+public abstract class Train(double mass, double force, double quality)
 {
-    private int _maxForce = force;
-    public double Speed = 0;
-    private int _acceleration = 0;
+    private double _maxForce = force;
+    private double _speed = 0;
+    private double _acceleration = 0;
 
-    public void ApplyForce(int force)
+    public ApplyForceResult ApplyForce(double force)
     {
         if (force > _maxForce)
         {
-            Console.WriteLine("не могу");
+            return new ApplyForceResult(false);
         }
         else
         {
             _maxForce = force;
             _acceleration = force / mass;
+            return new ApplyForceResult(true);
         }
     }
 
-    public double CalculateTravelTime(double distance)
+    public SegmentResult CalculateTravelTime(double distance)
     {
-        if (Speed == 0 && _acceleration == 0)
+        if (_speed == 0 && _acceleration == 0)
         {
-            Console.WriteLine("не могу");
+            return new SegmentResult(false, 0);
         }
         var lastDistance = distance;
         double lastTime = 0;
-        var lastSpeed = Speed;
+        var lastSpeed = _speed;
         while (lastDistance > 0)
         {
             var newSpeed = lastSpeed + _acceleration * quality;
             if (newSpeed < 0)
             {
-                Console.WriteLine("не могу");
+                return new SegmentResult(false, 0);
             }
             var collectDistance =newSpeed * quality;
             lastDistance = lastDistance - collectDistance;
@@ -41,20 +42,23 @@ public abstract class Train(int mass, int force, int quality)
             lastSpeed = newSpeed;
         }
 
-        Speed = lastSpeed;
-        return lastTime;
+        _speed = lastSpeed;
+        return new SegmentResult(true, lastTime);
     }
     
     public void Stop()
     {
-        Speed = 0;
+        _speed = 0;
         _acceleration = 0;
     }
     
     public void SetSpeed(double speed)
     {
-        Speed = speed;
+        _speed = speed;
     }
+    
+    public double GetSpeed(){
+        return _speed;}
     
     
 } 

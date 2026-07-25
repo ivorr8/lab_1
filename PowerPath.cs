@@ -1,10 +1,10 @@
 namespace lab_1;
 
-public class PowerPath(int force, double distance) : IRouteSegment
+public class PowerPath(double force, double distance) : IRouteSegment
 {
     public SegmentResult Pass(Train train)
     {
         train.ApplyForce(force);
-        return new SegmentResult(true, train.CalculateTravelTime(distance));
+        return train.CalculateTravelTime(distance);
     }
 }
