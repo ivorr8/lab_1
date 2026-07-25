@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net10.0": {}
   },
@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/igorromanov/lab_1/lab_1.csproj",
+      "projectUniqueName": "/Users/igorromanov/RiderProjects/lab_1/lab_1.csproj",
       "projectName": "lab_1",
-      "projectPath": "/Users/igorromanov/lab_1/lab_1.csproj",
+      "projectPath": "/Users/igorromanov/RiderProjects/lab_1/lab_1.csproj",
       "packagesPath": "/Users/igorromanov/.nuget/packages/",
-      "outputPath": "/Users/igorromanov/lab_1/obj/",
+      "outputPath": "/Users/igorromanov/RiderProjects/lab_1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/igorromanov/.nuget/NuGet/NuGet.Config"
@@ -30,7 +30,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -49,7 +48,6 @@
     },
     "frameworks": {
       "net10.0": {
-        "framework": "net10.0",
         "targetAlias": "net10.0",
         "imports": [
           "net461",
